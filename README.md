@@ -7,4 +7,4 @@ test pr
 
 rename works
 
-how abour pr?
+how abour pr? has 2 checks?
