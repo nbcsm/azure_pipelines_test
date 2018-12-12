@@ -2,7 +2,10 @@
 jobs:
 - template: 'job_template.yml'
   parameters:
-    platforms: ['Linux', 'Windows', 'MacOS']
+    platforms:
+    - 'Linux'
+    - 'Windows'
+    - 'MacOS'
     python_versions:
       py35: '3.5'
       py36: '3.6'
