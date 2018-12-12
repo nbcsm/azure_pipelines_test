@@ -6,7 +6,7 @@ parameters:
 jobs:
 #- job: ${{ parameters.name }}
 - ${{ each python_version in parameters.python_version }}:
-  - job: ${{ python_version }}
+  - job: ${{ parameters.name }}
     pool:
       ${{ if eq(parameters.os, 'Linux') }}:
         vmImage: ubuntu-16.04
