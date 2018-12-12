@@ -4,7 +4,10 @@ name: 'CI-UnitTest'
 jobs:
 - template: job_template.yml
   parameters:
-    os: 'Linux'
+    os: Linux
+#      - 'Linux'
+#      - 'Windows'
+#      - 'MacOS'
     python_version: '3.5'
 
 #- template: job_template.yml
