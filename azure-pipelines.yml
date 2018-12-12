@@ -2,9 +2,9 @@
 name: 'CI-UnitTest'
 
 jobs:
-- template: job_template.yml
+- template: 'job_template.yml'
   parameters:
-    os: Linux
+    os: 'Linux'
     python_version:
     - '3.5'
     - '3.6'
