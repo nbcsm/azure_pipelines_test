@@ -6,9 +6,9 @@ parameters:
 jobs:
 - ${{ each platform in parameters.platforms }}:
   - ${{ if eq(parameters.name, '') }}:
-    - job: ${{ platform }}
+      job: ${{ platform }}
   - ${{ if ne(parameters.name, '') }}:
-    - job: ${{ parameters.name }}
+      job: ${{ parameters.name }}
 
   pool:
     ${{ if eq(platform, 'Linux') }}:
@@ -19,7 +19,7 @@ jobs:
       vmImage: macOS-10.13
   steps:
   - bash: echo 'hello'
-  
+
     displayName: 'hello'
 
 #- ${{ each platform in parameters.platforms }}:
