@@ -4,7 +4,6 @@ parameters:
   python_version: []
 
 jobs:
-#- job: ${{ parameters.name }}
 - ${{ each python_version in parameters.python_version }}:
   - job: ${{ parameters.name }}
     pool:
