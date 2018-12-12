@@ -1,7 +1,7 @@
 parameters:
   name: ''
   os: ''
-  python_version: ''
+  python_version: []
 
 jobs:
 - job: ${{ parameters.name }}
@@ -16,7 +16,7 @@ jobs:
       vmImage: macOS-10.13
   steps:
   - bash: |
-      echo 'hello world'
+      echo '${{ parameters.python_version) }}'
     displayName: 'hello'
 #  - ${{ if eq(parameters.name, '') }}:
 #    - bash: echo '!!!!!'
