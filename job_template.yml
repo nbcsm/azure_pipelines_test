@@ -1,11 +1,11 @@
 parameters:
   name: ''
   os: ''
-  python_version: []
+  python_versions: {}
 
 jobs:
-- ${{ each python_version in parameters.python_version }}:
-  - job: ${{ python_version }}
+- ${{ each pair in parameters.python_versions }}:
+  - job: ${{ pair.key }}
     pool:
       ${{ if eq(parameters.os, 'Linux') }}:
         vmImage: ubuntu-16.04
@@ -14,7 +14,7 @@ jobs:
       ${{ if eq(parameters.os, 'macOS') }}:
         vmImage: macOS-10.13
     steps:
-    - bash: echo ${{ python_version }}
+    - bash: echo ${{ pair.value }}
       displayName: 'hello'
 
 #  - bash: |
