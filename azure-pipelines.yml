@@ -4,6 +4,7 @@ name: 'CI-UnitTest'
 jobs:
 - template: job_template.yml
   parameters:
+    name: UnitTest
 #    os: Linux
     os:
     - Linux
