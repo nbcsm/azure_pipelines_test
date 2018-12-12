@@ -1,0 +1,13 @@
+parameters:
+  name: ""
+  os: ""
+  python_version: ""
+
+jobs:
+- job: ${{ parameters.os }}
+  pool:
+    vmImage: "ubuntu-16.04"
+  steps:
+  - script: |
+    echo "hello world"
+  displayName: "hello"
