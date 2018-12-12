@@ -11,7 +11,7 @@ jobs:
   - bash: |
       echo "hello world"
     displayName: "hello"
-  - ${{ if eq(parameters.name, "") }}:
+  - ${{ if eq(parameters.name, '') }}:
     - bash: echo "!!!!!"
 
 
