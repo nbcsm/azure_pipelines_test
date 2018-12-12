@@ -5,11 +5,7 @@ jobs:
 - template: job_template.yml
   parameters:
     name: UnitTest
-#    os: Linux
-    os:
-    - Linux
-    - Windows
-    - MacOS
+    os: Linux
     python_version: '3.5'
 
 #- template: job_template.yml
