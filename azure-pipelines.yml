@@ -4,8 +4,8 @@ jobs:
   parameters:
     os: 'Linux'
     python_version:
-    - 'cp3.5'
-    - 'cp3.6'
+    - 'cp3 5'
+    - 'cp36'
 
 #- template: job_template.yml
 #  parameters:
