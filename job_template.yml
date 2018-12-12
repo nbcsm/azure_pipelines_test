@@ -5,9 +5,9 @@ parameters:
 
 jobs:
 - ${{ if eq(parameters.name, "") }}:
-  job: ${{ parameters.os }}
+  - job: ${{ parameters.os }}
 - ${{ if ne(parameters.name, "") }}:
-  job: ${{ parameters.name }}
+  - job: ${{ parameters.name }}
 
   pool:
     vmImage: "ubuntu-16.04"
