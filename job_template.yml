@@ -4,15 +4,13 @@ parameters:
   python_version: ""
 
 jobs:
-- ${{ if eq(parameters.name, '') }}:
-    job: ${{ parameters.os }}
-- ${{ if ne(parameters.name, '') }}:
-    job: ${{ parameters.name }}
-    
+- job: ${{ parameters.os }}
   pool:
     vmImage: "ubuntu-16.04"
   steps:
   - bash: |
       echo "hello world"
     displayName: "hello"
+  - ${{ if eq(parameters.os, 'Linux') }}:
+    - bash: echo "!!!!!"
 
