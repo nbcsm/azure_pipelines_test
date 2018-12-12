@@ -1,13 +1,13 @@
 
-name: "CI-UnitTest"
+name: 'CI-UnitTest'
 
 jobs:
 - template: job_template.yml
   parameters:
-    os: "Linux"
-    python_version: "3.5"
+    os: 'Linux'
+    python_version: '3.5'
 
 #- template: job_template.yml
 #  parameters:
-#    os: "Linux"
-#    python_version: "3.6"
+#    os: 'Linux'
+#    python_version: '3.6'

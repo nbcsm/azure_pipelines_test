@@ -1,17 +1,17 @@
 parameters:
-  name: ""
-  os: ""
-  python_version: ""
+  name: ''
+  os: ''
+  python_version: ''
 
 jobs:
 - job: ${{ parameters.os }}
   pool:
-    vmImage: "ubuntu-16.04"
+    vmImage: 'ubuntu-16.04'
   steps:
   - bash: |
-      echo "hello world"
-    displayName: "hello"
+      echo 'hello world'
+    displayName: 'hello'
   - ${{ if eq(parameters.name, '') }}:
-    - bash: echo "!!!!!"
+    - bash: echo '!!!!!'
 
 
