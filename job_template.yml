@@ -5,9 +5,9 @@ parameters:
 
 jobs:
 - ${{ each platform in parameters.platforms }}:
-  - ${{ if eq(parameters.name, '') }}:
+    ${{ if eq(parameters.name, '') }}:
       job: ${{ platform }}
-  - ${{ if ne(parameters.name, '') }}:
+    ${{ if ne(parameters.name, '') }}:
       job: ${{ parameters.name }}
 
   pool:
