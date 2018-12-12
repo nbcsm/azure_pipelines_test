@@ -4,20 +4,19 @@ parameters:
   python_version: []
 
 jobs:
-- job: ${{ parameters.name }}
-#- ${{ each os in parameters.os }}:
-#  - job: ${{ parameters.name }}
-  pool:
-    ${{ if eq(parameters.os, 'Linux') }}:
-      vmImage: ubuntu-16.04
-    ${{ if eq(parameters.os, 'Windows') }}:
-      vmImage: vs2017-win2016
-    ${{ if eq(parameters.os, 'macOS') }}:
-      vmImage: macOS-10.13
-  steps:
-  - ${{ each python_version in parameters.python_version }}:
+#- job: ${{ parameters.name }}
+- ${{ each python_version in parameters.python_version }}:
+  - job: ${{ python_version }}
+    pool:
+      ${{ if eq(parameters.os, 'Linux') }}:
+        vmImage: ubuntu-16.04
+      ${{ if eq(parameters.os, 'Windows') }}:
+        vmImage: vs2017-win2016
+      ${{ if eq(parameters.os, 'macOS') }}:
+        vmImage: macOS-10.13
+    steps:
     - bash: echo ${{ python_version }}
-#      displayName: 'hello'
+      displayName: 'hello'
 
 #  - bash: |
 #      echo 'hello world'
