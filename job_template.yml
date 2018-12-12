@@ -15,9 +15,14 @@ jobs:
     ${{ if eq(parameters.os, 'macOS') }}:
       vmImage: macOS-10.13
   steps:
-  - bash: |
-      echo '${{ parameters.python_version }}'
-    displayName: 'hello'
+  -  ${{ each python_version in parameters.python_version }}:
+    - bash: |
+        echo ${{ python_version }}
+      displayName: 'hello'
+
+#  - bash: |
+#      echo 'hello world'
+#    displayName: 'hello'
 #  - ${{ if eq(parameters.name, '') }}:
 #    - bash: echo '!!!!!'
 
