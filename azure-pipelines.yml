@@ -5,7 +5,9 @@ jobs:
 - template: job_template.yml
   parameters:
     os: Linux
-    python_version: ['3.5', '3.6']
+    python_version:
+    - '3.5'
+    - '3.6'
 
 #- template: job_template.yml
 #  parameters:
