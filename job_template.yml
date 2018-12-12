@@ -4,11 +4,8 @@ parameters:
   python_version: ""
 
 jobs:
-- ${{ if eq(parameters.name, "") }}:
-  - job: ${{ parameters.os }}
-- ${{ if ne(parameters.name, "") }}:
-  - job: ${{ parameters.name }}
-
+- ${{ if eq(parameters.name, '') }}: job: ${{ parameters.os }}
+- ${{ if ne(parameters.name, '') }}: job: ${{ parameters.name }}
   pool:
     vmImage: "ubuntu-16.04"
   steps:
