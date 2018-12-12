@@ -16,7 +16,7 @@ jobs:
       vmImage: macOS-10.13
   steps:
   - bash: |
-      echo '${{ parameters.python_version) }}'
+      echo '${{ parameters.python_version }}'
     displayName: 'hello'
 #  - ${{ if eq(parameters.name, '') }}:
 #    - bash: echo '!!!!!'
