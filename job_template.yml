@@ -9,7 +9,7 @@ parameters:
 jobs:
 - ${{ each platform in parameters.platforms }}:
   - ${{ if ne(parameters.name, '') }}:
-    - job: ${{ parameters.name }}
+    - job: ${{ format('{0} {1}', parameters.name, platform) }}
   - ${{ if eq(parameters.name, '') }}:
     - job: ${{ platform }}
       pool:
