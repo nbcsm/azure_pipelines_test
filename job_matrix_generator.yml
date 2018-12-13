@@ -12,11 +12,11 @@ jobs:
 - ${{ each platform in parameters.platforms }}:
   - job: ${{ parameters.job.name }}
     pool:
-      ${{ if eq(platform, 'Linux') }}:
+      ${{ if eq(platform, 'linux') }}:
         vmImage: 'ubuntu-16.04'
-      ${{ if eq(platform, 'Windows') }}:
+      ${{ if eq(platform, 'windows') }}:
         vmImage: 'vs2017-win2016'
-      ${{ if eq(platform, 'macOS') }}:
+      ${{ if eq(platform, 'mac') }}:
         vmImage: 'macOS-10.13'
 
     # Generate full matrix
@@ -27,7 +27,7 @@ jobs:
             ${{ each onnx_version in parameters.onnx_versions }}:
               ${{ each onnx_backend in parameters.onnx_backends }}:
                 ${{ each onnx_backend_version in onnx_backend.value }}:
-                  ${{ format('{0} Python{1} TF{2} Onnx{3} {4}{5}', platform, python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend_version) }}:
+                  ${{ format('{0} python{1} tf{2} onnx{3} {4}{5}', platform, python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend_version) }}:
                     AP_PYTHON_VERSION: '${{ python_version }}'
 
                     AP_TF_VERSION: '${{ tf_version }}'
