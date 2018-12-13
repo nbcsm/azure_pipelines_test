@@ -21,9 +21,9 @@ jobs:
           ${{ each tf_version in parameters.tf_versions }}:
             ${{ each onnx_version in parameters.onnx_versions }}:
               ${{ format('Python{0}_TF{1}_Onnx{2}', python_version, tf_version, onnx_version) }}:
-                ${{ format('AP_PYTHON_VERSION{0}', python_version) }}: '${{ python_version }}'
-                ${{ format('AP_TF_VERSION{0}', tf_version) }}: '${{ tf_version }}'
-                ${{ format('AP_ONNX_VERSION{0}', onnx_version) }}: '${{ onnx_version }}'
+                'AP_PYTHON_VERSION': '${{ python_version }}'
+                'AP_TF_VERSION': '${{ tf_version }}'
+                'AP_ONNX_VERSION': '${{ onnx_version }}'
 
     steps:
     - bash: env
