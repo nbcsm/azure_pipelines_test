@@ -2,8 +2,8 @@ parameters:
   name: ''
   platforms: []
   python_versions: ['3.6']
-  tf_versions: []
-  onnx_versions: []
+  tf_versions: ['']
+  onnx_versions: ['']
 
 jobs:
 - ${{ each platform in parameters.platforms }}:
