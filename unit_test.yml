@@ -8,8 +8,9 @@ steps:
 
 - bash: |
     echo $(AP_TF_VERSION)
-##    python -m pip install --upgrade pip setuptools wheel
-##    pip install pytest pytest-cov pytest-runner graphviz pylint requests pyyaml Pillow
-#    package="tensorflow"
-#    if [ "$(AP_TF_VERSION)" == "" ]; then package=$package + "==" + $(AP_TF_VERSION); fi
-#    echo $package
+#    python -m pip install --upgrade pip setuptools wheel
+#    pip install pytest pytest-cov pytest-runner graphviz pylint requests pyyaml Pillow
+    package='tensorflow'
+    if [ '$(AP_TF_VERSION)' == '' ]; then package=$package + '==' + $(AP_TF_VERSION); fi
+    echo $package
+  displayName: 'Setup Environment'
