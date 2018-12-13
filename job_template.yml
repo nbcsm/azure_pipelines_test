@@ -1,7 +1,8 @@
 parameters:
   name: ''
   platforms: []
-  python_versions: {}
+  python_versions: ['3.5']
+  onnx_versions: ['0.1.3']
 
 jobs:
 - ${{ each platform in parameters.platforms }}:
@@ -16,8 +17,10 @@ jobs:
     strategy:
       matrix:
         ${{ each python_version in parameters.python_versions }}:
-          ${{ format('Python{0}', python_version) }}:
-            ${{ format('AP_PYTHON_VERSION{0}', python_version) }}: '${{ python_version }}'
+          ${{ each onnx_version in parameters.onnx_versions }}:
+            ${{ format('Python{0}_Onnx{1}', python_version, onnx_version) }}:
+              ${{ format('AP_PYTHON_VERSION{0}', python_version) }}: '${{ python_version }}'
+              ${{ format('AP_ONNX_VERSION{0}', onnx_version) }}: '${{ onnx_version }}'
 
     steps:
     - bash: echo 'hello'

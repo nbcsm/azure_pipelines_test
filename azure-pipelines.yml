@@ -3,10 +3,13 @@ jobs:
 - template: 'job_template.yml'
   parameters:
     platforms:
-    - 'Linux'
-#    - 'Windows'
-#    - 'MacOS'
+      - 'Linux'
+#     - 'Windows'
+#     - 'MacOS'
     python_versions:
       - '3.5'
       - '3.6'
+    onnx_versions:
+
+
 
