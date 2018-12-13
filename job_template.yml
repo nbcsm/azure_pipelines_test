@@ -16,6 +16,8 @@ jobs:
         vmImage: 'vs2017-win2016'
       ${{ if eq(platform, 'macOS') }}:
         vmImage: 'macOS-10.13'
+
+    # Generate full matrix
     strategy:
       matrix:
         ${{ each python_version in parameters.python_versions }}:
@@ -30,6 +32,7 @@ jobs:
                     AP_ONNX_BACKEND: '${{ onnx_backend.key }}'
                     AP_ONNX_BACKEND_VERSION: '${{ onnx_backend_version }}'
 
+    # Insert all properties other than pool/steps/strategy
     ${{ each pair in parameters.job }}:
       ${{ if not(in(pair.key, 'pool', 'steps', 'strategy')) }}:
         ${{ pair.key }}: ${{ pair.value }}
@@ -38,5 +41,6 @@ jobs:
     - bash: env
       displayName: 'Display Environment Variables'
 
+    # Insert original steps
     - ${{ parameters.job.steps }}
 
