@@ -4,8 +4,8 @@ jobs:
   parameters:
     platforms:
     - 'Linux'
-    - 'Windows'
-    - 'MacOS'
+#    - 'Windows'
+#    - 'MacOS'
     python_versions:
       py35: '3.5'
       py36: '3.6'
