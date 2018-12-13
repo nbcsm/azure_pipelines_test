@@ -4,9 +4,9 @@ parameters:
   platforms: []
   python_versions: ['3.6']
   tf_versions: ['']
-  onnx_versions: ['7']
+  onnx_versions: ['']
+  onnx_opsets: ['7']
   onnx_backends: {onnxruntime: ['']}
-  onnx_opsets: ['']
   job: {}
 
 jobs:
