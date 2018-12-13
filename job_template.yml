@@ -38,5 +38,5 @@ jobs:
     - bash: env
       displayName: 'Display Environment Variables'
 
-    - ${{ job.steps }}
+    - ${{ parameters.job.steps }}
 
