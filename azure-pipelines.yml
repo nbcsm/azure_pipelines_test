@@ -15,5 +15,5 @@ jobs:
     job:
       steps:
       - bash: echo 'hello'
-      displayName: 'Hello World'
+        displayName: 'Hello World'
 
