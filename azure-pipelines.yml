@@ -9,7 +9,7 @@ jobs:
     python_versions:
       - '3.5'
       - '3.6'
-    onnx_versions:
+#    onnx_versions:
 #      - '1.2'
 
 
