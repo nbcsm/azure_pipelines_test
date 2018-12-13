@@ -4,6 +4,7 @@ parameters:
   python_versions: ['3.6']
   tf_versions: ['']
   onnx_versions: ['']
+  onnx_backends: {'onnxruntime': ''}
 
 jobs:
 - ${{ each platform in parameters.platforms }}:
@@ -20,10 +21,13 @@ jobs:
         ${{ each python_version in parameters.python_versions }}:
           ${{ each tf_version in parameters.tf_versions }}:
             ${{ each onnx_version in parameters.onnx_versions }}:
-              ${{ format('Python{0}_TF{1}_Onnx{2}', python_version, tf_version, onnx_version) }}:
-                'AP_PYTHON_VERSION': '${{ python_version }}'
-                'AP_TF_VERSION': '${{ tf_version }}'
-                'AP_ONNX_VERSION': '${{ onnx_version }}'
+              ${{ each onnx_backend in parameters.onnx_backends }}:
+                ${{ format('Python{0}_TF{1}_Onnx{2}_{3}{4}', python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend.value) }}:
+                  'AP_PYTHON_VERSION': '${{ python_version }}'
+                  'AP_TF_VERSION': '${{ tf_version }}'
+                  'AP_ONNX_VERSION': '${{ onnx_version }}'
+                  'AP_ONNX_BACKEND': '${{ onnx_backend.key }}'
+                  'AP_ONNX_BACKEND_VERSION': '${{ onnx_backend.value }}'
 
     steps:
     - bash: env
