@@ -22,7 +22,7 @@ jobs:
           ${{ each tf_version in parameters.tf_versions }}:
             ${{ each onnx_version in parameters.onnx_versions }}:
               ${{ each onnx_backend in parameters.onnx_backends }}:
-                ${{ format('Python{0}_TF{1}_Onnx{2}_{3}{4}', python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend.value) }}:
+                ${{ format('Python{0} TF{1} Onnx{2} {3}{4}', python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend.value) }}:
                   'AP_PYTHON_VERSION': '${{ python_version }}'
                   'AP_TF_VERSION': '${{ tf_version }}'
                   'AP_ONNX_VERSION': '${{ onnx_version }}'
