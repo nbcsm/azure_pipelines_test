@@ -4,41 +4,40 @@ parameters:
   tf_versions: ['']
   onnx_versions: ['']
   onnx_backends: {onnxruntime: ['']}
-  jobs: []
+  job: {}
 
 jobs:
-- ${{ each job in parameters.jobs }}:
-  - ${{ each platform in parameters.platforms }}:
-    - ${{ if ne(job.name, '') }}:
-      - job: ${{ format('{0} {1}', job.name, platform) }}
-    - ${{ if eq(job.name, '') }}:
-      - job: ${{ platform }}
-        pool:
-          ${{ if eq(platform, 'Linux') }}:
-            vmImage: 'ubuntu-16.04'
-          ${{ if eq(platform, 'Windows') }}:
-            vmImage: 'vs2017-win2016'
-          ${{ if eq(platform, 'macOS') }}:
-            vmImage: 'macOS-10.13'
-        strategy:
-          matrix:
-            ${{ each python_version in parameters.python_versions }}:
-              ${{ each tf_version in parameters.tf_versions }}:
-                ${{ each onnx_version in parameters.onnx_versions }}:
-                  ${{ each onnx_backend in parameters.onnx_backends }}:
-                    ${{ each onnx_backend_version in onnx_backend.value }}:
-                      ${{ format('Python{0} TF{1} Onnx{2} {3}{4}', python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend_version) }}:
-                        AP_PYTHON_VERSION: '${{ python_version }}'
-                        AP_TF_VERSION: '${{ tf_version }}'
-                        AP_ONNX_VERSION: '${{ onnx_version }}'
-                        AP_ONNX_BACKEND: '${{ onnx_backend.key }}'
-                        AP_ONNX_BACKEND_VERSION: '${{ onnx_backend_version }}'
+- ${{ each platform in parameters.platforms }}:
+  - ${{ if ne(parameters.job.name, '') }}:
+    - job: ${{ format('{0} {1}', parameters.job.name, platform) }}
+  - ${{ if eq(parameters.job.name, '') }}:
+    - job: ${{ platform }}
+      pool:
+        ${{ if eq(platform, 'Linux') }}:
+          vmImage: 'ubuntu-16.04'
+        ${{ if eq(platform, 'Windows') }}:
+          vmImage: 'vs2017-win2016'
+        ${{ if eq(platform, 'macOS') }}:
+          vmImage: 'macOS-10.13'
+      strategy:
+        matrix:
+          ${{ each python_version in parameters.python_versions }}:
+            ${{ each tf_version in parameters.tf_versions }}:
+              ${{ each onnx_version in parameters.onnx_versions }}:
+                ${{ each onnx_backend in parameters.onnx_backends }}:
+                  ${{ each onnx_backend_version in onnx_backend.value }}:
+                    ${{ format('Python{0} TF{1} Onnx{2} {3}{4}', python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend_version) }}:
+                      AP_PYTHON_VERSION: '${{ python_version }}'
+                      AP_TF_VERSION: '${{ tf_version }}'
+                      AP_ONNX_VERSION: '${{ onnx_version }}'
+                      AP_ONNX_BACKEND: '${{ onnx_backend.key }}'
+                      AP_ONNX_BACKEND_VERSION: '${{ onnx_backend_version }}'
 
-  #      - ${{ each pair in parameters.job }}:
-  #        ${{ if ne(pair.key, 'steps') }}:
-  #          ${{ pair.key }}: ${{ pair.value }}
+#      - ${{ each pair in parameters.job }}:
+#        ${{ if ne(pair.key, 'steps') }}:
+#          ${{ pair.key }}: ${{ pair.value }}
 
-        steps:
-        - bash: env
-          displayName: 'Display Environment Variables'
+      steps:
+      - bash: env
+        displayName: 'Display Environment Variables'
 
