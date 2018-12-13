@@ -15,10 +15,13 @@ jobs:
         vmImage: macOS-10.13
     strategy:
       matrix:
-        Python3.5:
-          PYTHON_VERSION: '3.5'
-        Python3.6:
-          PYTHON_VERSION: '3.6'
+        ${{ each pair in parameters.python_versions }}:
+          ${{ pair.key }}:
+            ${{ pair.key }}: '${{ pair.value }}'
+#        Python3.5:
+#          PYTHON_VERSION: '3.5'
+#        Python3.6:
+#          PYTHON_VERSION: '3.6'
 
     steps:
     - bash: echo 'hello'
