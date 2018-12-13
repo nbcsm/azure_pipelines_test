@@ -1,6 +1,6 @@
 
 jobs:
-- template: 'job_template.yml'
+- template: 'job_matrix_generator.yml'
   parameters:
     platforms:
       - 'Linux'
