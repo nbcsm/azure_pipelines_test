@@ -18,10 +18,6 @@ jobs:
         ${{ each python_version in parameters.python_versions }}:
           ${{ format('Python{0}', python_version) }}:
             ${{ format('AP_PYTHON_VERSION{0}', python_version) }}: '${{ python_version }}'
-#        Python3.5:
-#          PYTHON_VERSION: '3.5'
-#        Python3.6:
-#          PYTHON_VERSION: '3.6'
 
     steps:
     - bash: echo 'hello'
