@@ -8,35 +8,9 @@ steps:
 
 - bash: |
     set -e
-
     python -m pip install --upgrade pip setuptools wheel
-
-    pip install pytest pytest-cov pytest-runner graphviz pylint requests pyyaml Pillow
-
-    if [ "$(AP_TF_VERSION)" == "" ]; then
-      pip install tensorflow
-    else
-      pip install tensorflow==$(AP_TF_VERSION)
-    fi
-
-    if [ "$(AP_ONNX_VERSION)" == "" ]; then
-      pip install onnx
-    else
-      pip install onnx==$(AP_ONNX_VERSION)
-    fi
-
-    if [ "$(AP_ONNX_VERSION)" == "" ]; then
-      pip install onnx
-    else
-      pip install onnx==$(AP_ONNX_VERSION)
-    fi
-
-    if [ "$(AP_ONNX_BACKEND_VERSION)" == "" ]; then
-      pip install $(AP_ONNX_BACKEND)
-    else
-      pip install $(AP_ONNX_BACKEND)==$(AP_ONNX_BACKEND_VERSION)
-    fi
-
-    python setup.py install
+    pip install pytest pytest-cov pytest-runner graphviz pylint requests pyyaml Pillow \
+      $(AP_PIP_INSTALL_TF_NAME) $(AP_PIP_INSTALL_ONNX_NAME) $(AP_PIP_INSTALL_ONNX_BACKEND_NAME)
+#    python setup.py install
     pip freeze --all
   displayName: 'Setup Environment'
