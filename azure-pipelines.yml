@@ -13,4 +13,5 @@ jobs:
 #      onnxruntime: ['0.1.3', '0.1.4']
 #      caffe2: ['']
     job:
-      name: 'test'
+#      name: 'UnitTest'
+      sb: 'sb'
