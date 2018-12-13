@@ -12,3 +12,5 @@ jobs:
 #    onnx_backends:
 #      onnxruntime: ['0.1.3', '0.1.4']
 #      caffe2: ['']
+    jobs:
+      name: 'test'
