@@ -1,3 +1,5 @@
+# This template generate multiple jobs based on input parameters
+
 parameters:
   platforms: []
   python_versions: ['3.6']
