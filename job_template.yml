@@ -8,10 +8,6 @@ parameters:
 
 jobs:
 - ${{ each platform in parameters.platforms }}:
-#  - ${{ if ne(parameters.job.name, '') }}:
-#    - job: ${{ format('{0}_{1}', parameters.job.name, platform) }}
-#  - ${{ if eq(parameters.job.name, '') }}:
-#    - job: ${{ platform }}
   - job: ${{ parameters.job.name }}
     pool:
       ${{ if eq(platform, 'Linux') }}:

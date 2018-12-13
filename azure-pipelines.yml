@@ -13,5 +13,7 @@ jobs:
 #      onnxruntime: ['0.1.3', '0.1.4']
 #      caffe2: ['']
     job:
-#      name: 'UnitTest'
-      sb: 'sb'
+      steps:
+      - bash: echo 'hello'
+      displayName: 'Hello World'
+
