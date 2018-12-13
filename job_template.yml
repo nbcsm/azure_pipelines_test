@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         ${{ each pair in parameters.python_versions }}:
-          ${{ pair.key }}:
+          ${{ pair.value }}:
             ${{ pair.key }}: '${{ pair.value }}'
 #        Python3.5:
 #          PYTHON_VERSION: '3.5'
