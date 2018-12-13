@@ -35,4 +35,5 @@ jobs:
 
       steps:
       - bash: env
-        displayName: 'env'
+        displayName: 'Display Environment Variables'
+      
