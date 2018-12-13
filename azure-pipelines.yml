@@ -4,14 +4,14 @@ jobs:
   parameters:
     platforms:
     - 'linux'
-    - 'windows'
-    - 'mac'
-    python_versions: ['3.5', '3.6']
+#    - 'windows'
+#    - 'mac'
+#    python_versions: ['3.5', '3.6']
     tf_versions: ['1.11']
-    onnx_versions: ['1.2', '1.3']
-    onnx_backends:
-      onnxruntime: ['0.1.3', '0.1.4']
-      caffe2: ['']
+#    onnx_versions: ['1.2', '1.3']
+#    onnx_backends:
+#      onnxruntime: ['0.1.3', '0.1.4']
+#      caffe2: ['']
 
     job:
       steps:

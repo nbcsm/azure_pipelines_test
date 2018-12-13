@@ -4,8 +4,9 @@ parameters:
   platforms: []
   python_versions: ['3.6']
   tf_versions: ['']
-  onnx_versions: ['']
+  onnx_versions: ['7']
   onnx_backends: {onnxruntime: ['']}
+  onnx_opsets: ['']
   job: {}
 
 jobs:
@@ -25,29 +26,31 @@ jobs:
         ${{ each python_version in parameters.python_versions }}:
           ${{ each tf_version in parameters.tf_versions }}:
             ${{ each onnx_version in parameters.onnx_versions }}:
-              ${{ each onnx_backend in parameters.onnx_backends }}:
-                ${{ each onnx_backend_version in onnx_backend.value }}:
-                  ${{ format('{0} python{1} tf{2} onnx{3} {4}{5}', platform, python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend_version) }}:
-                    AP_PYTHON_VERSION: '${{ python_version }}'
+              ${{ each onnx_opset in onnx_opsets }}:
+                ${{ each onnx_backend in parameters.onnx_backends }}:
+                  ${{ each onnx_backend_version in onnx_backend.value }}:
+                    ${{ format('{0} python{1} tf{2} onnx{3} {4}{5}', platform, python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend_version) }}:
+                      AP_PYTHON_VERSION: '${{ python_version }}'
+                      AP_TF_VERSION: '${{ tf_version }}'
+                      AP_ONNX_VERSION: '${{ onnx_version }}'
+                      AP_ONNX_OPSET: '${{ onnx_opset }}'
+                      AP_ONNX_BACKEND: '${{ onnx_backend.key }}'
+                      AP_ONNX_BACKEND_VERSION: '${{ onnx_backend_version }}'
 
-                    AP_TF_VERSION: '${{ tf_version }}'
-                    ${{ if eq(tf_version, '') }}:
-                      AP_PIP_TF_NAME: 'tensorflow'
-                    ${{ if ne(tf_version, '') }}:
-                      AP_PIP_TF_NAME: ${{ format('tensorflow=={0}', tf_version) }}
+                      ${{ if eq(tf_version, '') }}:
+                        AP_PIP_TF_NAME: 'tensorflow'
+                      ${{ if ne(tf_version, '') }}:
+                        AP_PIP_TF_NAME: ${{ format('tensorflow=={0}', tf_version) }}
 
-                    AP_ONNX_VERSION: '${{ onnx_version }}'
-                    ${{ if eq(onnx_version, '') }}:
-                      AP_PIP_ONNX_NAME: 'onnx'
-                    ${{ if ne(onnx_version, '') }}:
-                      AP_PIP_ONNX_NAME: ${{ format('onnx=={0}', onnx_version) }}
+                      ${{ if eq(onnx_version, '') }}:
+                        AP_PIP_ONNX_NAME: 'onnx'
+                      ${{ if ne(onnx_version, '') }}:
+                        AP_PIP_ONNX_NAME: ${{ format('onnx=={0}', onnx_version) }}
 
-                    AP_ONNX_BACKEND: '${{ onnx_backend.key }}'
-                    AP_ONNX_BACKEND_VERSION: '${{ onnx_backend_version }}'
-                    ${{ if eq(onnx_backend_version, '') }}:
-                      AP_PIP_ONNX_BACKEND_NAME: '${{ onnx_backend.key }}'
-                    ${{ if ne(onnx_backend_version, '') }}:
-                      AP_PIP_ONNX_BACKEND_NAME: ${{ format('{0}=={1}', onnx_backend.key, onnx_backend_version) }}
+                      ${{ if eq(onnx_backend_version, '') }}:
+                        AP_PIP_ONNX_BACKEND_NAME: '${{ onnx_backend.key }}'
+                      ${{ if ne(onnx_backend_version, '') }}:
+                        AP_PIP_ONNX_BACKEND_NAME: ${{ format('{0}=={1}', onnx_backend.key, onnx_backend_version) }}
 
     # Insert all properties other than pool/steps/strategy
     ${{ each pair in parameters.job }}:
