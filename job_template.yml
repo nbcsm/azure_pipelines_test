@@ -2,7 +2,7 @@ parameters:
   name: ''
   platforms: []
   python_versions: ['3.5']
-  onnx_versions: ['0.1.3']
+  onnx_versions: ['1.3']
 
 jobs:
 - ${{ each platform in parameters.platforms }}:
