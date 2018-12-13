@@ -1,14 +1,11 @@
 # Unit test steps
 
 steps:
-- bash: echo 'hello2'
-  displayName: 'Hello World2'
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(AP_PYTHON_VERSION)'
+    architecture: 'x64'
 
-#- task: UsePythonVersion@0
-#  inputs:
-#    versionSpec: '${{ parameters.python_version }}'
-#    architecture: 'x64'
-#
 #- bash: |
 #    python -m pip install --upgrade pip setuptools wheel
 #    pip install pytest pytest-cov pytest-runner graphviz pylint requests pyyaml Pillow
