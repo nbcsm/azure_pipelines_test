@@ -6,10 +6,10 @@ jobs:
       - 'Linux'
 #     - 'Windows'
 #     - 'MacOS'
-    python_versions:
-      - '3.5'
-      - '3.6'
-    onnx_versions:
+#    python_versions:
+#      - '3.5'
+#      - '3.6'
+#    onnx_versions:
 
 
 
