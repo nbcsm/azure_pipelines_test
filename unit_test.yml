@@ -3,12 +3,12 @@
 steps:
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '$(AP_PYTHON_VERSION)'
+    versionSpec: '$(CI_PYTHON_VERSION)'
     architecture: 'x64'
 
 - bash: |
     set -ex
     python -m pip install --upgrade pip setuptools wheel
-    pip install pytest pytest-cov pytest-runner graphviz pylint requests pyyaml pillow $(AP_PIP_TF_NAME) $(AP_PIP_ONNX_NAME) $(AP_PIP_ONNX_BACKEND_NAME)
+    pip install pytest pytest-cov pytest-runner graphviz pylint requests pyyaml pillow $(CI_PIP_TF_NAME) $(CI_PIP_ONNX_NAME) $(CI_PIP_ONNX_BACKEND_NAME)
     pip freeze --all
   displayName: 'Setup Environment'
