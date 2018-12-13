@@ -5,10 +5,6 @@ parameters:
 
 jobs:
 - ${{ each platform in parameters.platforms }}:
-#  - ${{ if eq(parameters.name, '') }}:
-#      job: ${{ platform }}
-#  - ${{ if ne(parameters.name, '') }}:
-#      job: ${{ parameters.name }}
   - job: ${{ platform }}
     pool:
       ${{ if eq(platform, 'Linux') }}:
@@ -20,25 +16,3 @@ jobs:
     steps:
     - bash: echo 'hello'
       displayName: 'hello'
-
-#- ${{ each platform in parameters.platforms }}:
-#  - ${{ each python_version in parameters.python_versions }}:
-#    - job: ${{ format('{0}_{1}', platform, python_version.key) }}
-#      pool:
-#        ${{ if eq(platform, 'Linux') }}:
-#          vmImage: ubuntu-16.04
-#        ${{ if eq(platform, 'Windows') }}:
-#          vmImage: vs2017-win2016
-#        ${{ if eq(platform, 'macOS') }}:
-#          vmImage: macOS-10.13
-#      steps:
-#      - bash: echo ${{ python_version.value }}
-#        displayName: 'hello'
-
-#  - bash: |
-#      echo 'hello world'
-#    displayName: 'hello'
-#  - ${{ if eq(parameters.name, '') }}:
-#    - bash: echo '!!!!!'
-
-

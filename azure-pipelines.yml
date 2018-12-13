@@ -10,7 +10,3 @@ jobs:
       py35: '3.5'
       py36: '3.6'
 
-#- template: job_template.yml
-#  parameters:
-#    os: 'Linux'
-#    python_version: '3.6'
