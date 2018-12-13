@@ -30,7 +30,7 @@ jobs:
                     AP_ONNX_BACKEND: '${{ onnx_backend.key }}'
                     AP_ONNX_BACKEND_VERSION: '${{ onnx_backend_version }}'
 
-    - ${{ each pair in parameters.job }}:
+    ${{ each pair in parameters.job }}:
       ${{ if not(in(pair.key, 'pool', 'steps', 'strategy')) }}:
         ${{ pair.key }}: ${{ pair.value }}
 
