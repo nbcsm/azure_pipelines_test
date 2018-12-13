@@ -9,6 +9,6 @@ steps:
 - bash: |
     set -ex
     python -m pip install --upgrade pip setuptools wheel
-    pip install pytest pytest-cov pytest-runner graphviz pylint requests pyyaml Pillow $(AP_PIP_INSTALL_TF_NAME) $(AP_PIP_INSTALL_ONNX_NAME) $(AP_PIP_INSTALL_ONNX_BACKEND_NAME)
+    pip install pytest pytest-cov pytest-runner graphviz pylint requests pyyaml pillow $(AP_PIP_INSTALL_TF_NAME) $(AP_PIP_INSTALL_ONNX_NAME) $(AP_PIP_INSTALL_ONNX_BACKEND_NAME)
     pip freeze --all
   displayName: 'Setup Environment'
