@@ -11,11 +11,11 @@ jobs:
   - job: ${{ platform }}
     pool:
       ${{ if eq(platform, 'Linux') }}:
-        vmImage: ubuntu-16.04
+        vmImage: 'ubuntu-16.04'
       ${{ if eq(platform, 'Windows') }}:
-        vmImage: vs2017-win2016
+        vmImage: 'vs2017-win2016'
       ${{ if eq(platform, 'macOS') }}:
-        vmImage: macOS-10.13
+        vmImage: 'macOS-10.13'
     strategy:
       matrix:
         ${{ each python_version in parameters.python_versions }}:
@@ -23,11 +23,11 @@ jobs:
             ${{ each onnx_version in parameters.onnx_versions }}:
               ${{ each onnx_backend in parameters.onnx_backends }}:
                 ${{ format('Python{0} TF{1} Onnx{2} {3}{4}', python_version, tf_version, onnx_version, onnx_backend.key, onnx_backend.value) }}:
-                  'AP_PYTHON_VERSION': '${{ python_version }}'
-                  'AP_TF_VERSION': '${{ tf_version }}'
-                  'AP_ONNX_VERSION': '${{ onnx_version }}'
-                  'AP_ONNX_BACKEND': '${{ onnx_backend.key }}'
-                  'AP_ONNX_BACKEND_VERSION': '${{ onnx_backend.value }}'
+                  AP_PYTHON_VERSION: '${{ python_version }}'
+                  AP_TF_VERSION: '${{ tf_version }}'
+                  AP_ONNX_VERSION: '${{ onnx_version }}'
+                  AP_ONNX_BACKEND: '${{ onnx_backend.key }}'
+                  AP_ONNX_BACKEND_VERSION: '${{ onnx_backend.value }}'
 
     steps:
     - bash: env
